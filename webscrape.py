@@ -11,4 +11,24 @@ code = BeautifulSoup(data.text, 'html.parser')
 
 listItem = code.findAll("div",{"class":"location-list"})
 
-print(listItem)
+city = listItem[0]
+
+#print(city.ul.li.a)
+
+print(city)
+
+
+tmp_dict = {}
+tmp_dict['city_state'] = []
+tmp_dict['link'] = []
+for i in city:
+    for x in range(len(city.find_all('a'))):
+        tmp_dict['city_state'].append(city.find_all('a')[x].text)
+        tmp_dict['link'].append(city.find_all('a')[x]['href'])
+
+#city.find_all('a')[0]['href']
+
+print(tmp_dict)
+
+import pandas as pd
+pd.DataFrame(tmp_dict).to_csv('./links_citystate.csv')
