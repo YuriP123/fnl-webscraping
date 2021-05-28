@@ -8,4 +8,7 @@ user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, li
 url = 'https://www.freshnlean.com/locations/#tab-section1'
 data = requests.get(url, headers={'User-Agent': user_agent})
 code = BeautifulSoup(data.text, 'html.parser')
-print(code.h1)
+
+listItem = code.findAll("div",{"class":"location-list"})
+
+print(listItem)
