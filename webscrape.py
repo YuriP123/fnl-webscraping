@@ -9,24 +9,17 @@ url = 'https://www.freshnlean.com/locations/#tab-section1'
 data = requests.get(url, headers={'User-Agent': user_agent})
 code = BeautifulSoup(data.text, 'html.parser')
 
-listItem = code.findAll("div",{"class":"location-list"})
+Object = code.findAll("div",{"class":"location-list"})
 
-city = listItem[0]
-
-#print(city.ul.li.a)
-
-print(city)
-
+list = Object[0]
 
 tmp_dict = {}
 tmp_dict['city_state'] = []
 tmp_dict['link'] = []
-for i in city:
-    for x in range(len(city.find_all('a'))):
-        tmp_dict['city_state'].append(city.find_all('a')[x].text)
-        tmp_dict['link'].append(city.find_all('a')[x]['href'])
 
-#city.find_all('a')[0]['href']
+for x in range(len(list.find_all('a'))):
+    tmp_dict['city_state'].append(list.find_all('a')[x].text)
+    tmp_dict['link'].append(list.find_all('a')[x]['href'])
 
 print(tmp_dict)
 
